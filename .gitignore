@@ -7,6 +7,7 @@
 # Precompiled Headers
 *.gch
 *.pch
+*.ipch
 
 # Libraries
 *.lib
@@ -76,3 +77,9 @@ nbproject/*
 options.cache
 
 
+src/.vs/*
+src/msvc/.vs/*
+src/msvc/Debug/*
+src/msvc/Release/*
+src/msvc/x64/Debug/*
+src/msvc/x64/Release/*

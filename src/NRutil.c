@@ -17,8 +17,8 @@
 #define NR_END 1
 #define FREE_ARG char*
 
-void NRerror(char error_text[])
 /* Numerical Recipes standard error handler */
+void NRerror(char error_text[])
 {
 	fprintf(stderr,"Numerical Recipes run-time error...\n");
 	fprintf(stderr,"%s\n",error_text);
@@ -26,8 +26,8 @@ void NRerror(char error_text[])
 	exit(1000);
 }
 
-float *vector(long nl, long nh)
 /* allocate a float vector with subscript range v[nl..nh] */
+float *vector(long nl, long nh)
 {
 	float *v;
 
@@ -36,8 +36,8 @@ float *vector(long nl, long nh)
 	return v-nl+NR_END;
 }
 
-int *ivector(long nl, long nh)
 /* allocate an int vector with subscript range v[nl..nh] */
+int *ivector(long nl, long nh)
 {
 	int *v;
 
@@ -46,8 +46,8 @@ int *ivector(long nl, long nh)
 	return v-nl+NR_END;
 }
 
-unsigned char *cvector(long nl, long nh)
 /* allocate an unsigned char vector with subscript range v[nl..nh] */
+unsigned char *cvector(long nl, long nh)
 {
 	unsigned char *v;
 
@@ -56,8 +56,8 @@ unsigned char *cvector(long nl, long nh)
 	return v-nl+NR_END;
 }
 
-unsigned long *lvector(long nl, long nh)
 /* allocate an unsigned long vector with subscript range v[nl..nh] */
+unsigned long *lvector(long nl, long nh)
 {
 	unsigned long *v;
 
@@ -66,8 +66,8 @@ unsigned long *lvector(long nl, long nh)
 	return v-nl+NR_END;
 }
 
-double *dvector(long nl, long nh)
 /* allocate a double vector with subscript range v[nl..nh] */
+double *dvector(long nl, long nh)
 {
 	double *v;
 
@@ -76,8 +76,8 @@ double *dvector(long nl, long nh)
 	return v-nl+NR_END;
 }
 
-float **matrix(long nrl, long nrh, long ncl, long nch)
 /* allocate a float matrix with subscript range m[nrl..nrh][ncl..nch] */
+float **matrix(long nrl, long nrh, long ncl, long nch)
 {
 	long i, nrow=nrh-nrl+1,ncol=nch-ncl+1;
 	float **m;
@@ -100,8 +100,8 @@ float **matrix(long nrl, long nrh, long ncl, long nch)
 	return m;
 }
 
-double **dmatrix(long nrl, long nrh, long ncl, long nch)
 /* allocate a double matrix with subscript range m[nrl..nrh][ncl..nch] */
+double **dmatrix(long nrl, long nrh, long ncl, long nch)
 {
 	long i, nrow=nrh-nrl+1,ncol=nch-ncl+1;
 	double **m;
@@ -124,8 +124,8 @@ double **dmatrix(long nrl, long nrh, long ncl, long nch)
 	return m;
 }
 
-int **imatrix(long nrl, long nrh, long ncl, long nch)
 /* allocate a int matrix with subscript range m[nrl..nrh][ncl..nch] */
+int **imatrix(long nrl, long nrh, long ncl, long nch)
 {
 	long i, nrow=nrh-nrl+1,ncol=nch-ncl+1;
 	int **m;
@@ -149,9 +149,9 @@ int **imatrix(long nrl, long nrh, long ncl, long nch)
 	return m;
 }
 
+/* point a subMatrix [newrl..][newcl..] to a[oldrl..oldrh][oldcl..oldch] */
 float **subMatrix(float **a, long oldrl, long oldrh, long oldcl, long oldch,
 	long newrl, long newcl)
-/* point a subMatrix [newrl..][newcl..] to a[oldrl..oldrh][oldcl..oldch] */
 {
 	long i,j,nrow=oldrh-oldrl+1,ncol=oldcl-newcl;
 	float **m;
@@ -169,11 +169,11 @@ float **subMatrix(float **a, long oldrl, long oldrh, long oldcl, long oldch,
 	return m;
 }
 
-float **convert_matrix(float *a, long nrl, long nrh, long ncl, long nch)
 /* allocate a float matrix m[nrl..nrh][ncl..nch] that points to the matrix
 declared in the standard C manner as a[nrow][ncol], where nrow=nrh-nrl+1
 and ncol=nch-ncl+1. The routine should be called with the address
 &a[0][0] as the first argument. */
+float **convert_matrix(float *a, long nrl, long nrh, long ncl, long nch)
 {
 	long i,j,nrow=nrh-nrl+1,ncol=nch-ncl+1;
 	float **m;
@@ -191,8 +191,8 @@ and ncol=nch-ncl+1. The routine should be called with the address
 	return m;
 }
 
-float ***f3tensor(long nrl, long nrh, long ncl, long nch, long ndl, long ndh)
 /* allocate a float 3tensor with range t[nrl..nrh][ncl..nch][ndl..ndh] */
+float ***f3tensor(long nrl, long nrh, long ncl, long nch, long ndl, long ndh)
 {
 	long i,j,nrow=nrh-nrl+1,ncol=nch-ncl+1,ndep=ndh-ndl+1;
 	float ***t;
@@ -226,79 +226,79 @@ float ***f3tensor(long nrl, long nrh, long ncl, long nch, long ndl, long ndh)
 	return t;
 }
 
-void free_vector(float *v, long nl, long nh)
 /* free a float vector allocated with vector() */
+void free_vector(float *v, long nl, long nh)
 {
 	free((FREE_ARG) (v+nl-NR_END));
 }
 
-void free_ivector(int *v, long nl, long nh)
 /* free an int vector allocated with ivector() */
+void free_ivector(int *v, long nl, long nh)
 {
 	free((FREE_ARG) (v+nl-NR_END));
 }
 
-void free_cvector(unsigned char *v, long nl, long nh)
 /* free an unsigned char vector allocated with cvector() */
+void free_cvector(unsigned char *v, long nl, long nh)
 {
 	free((FREE_ARG) (v+nl-NR_END));
 }
 
-void free_lvector(unsigned long *v, long nl, long nh)
 /* free an unsigned long vector allocated with lvector() */
+void free_lvector(unsigned long *v, long nl, long nh)
 {
 	free((FREE_ARG) (v+nl-NR_END));
 }
 
-void free_dvector(double *v, long nl, long nh)
 /* free a double vector allocated with dvector() */
+void free_dvector(double *v, long nl, long nh)
 {
 	free((FREE_ARG) (v+nl-NR_END));
 }
 
-void free_matrix(float **m, long nrl, long nrh, long ncl, long nch)
 /* free a float matrix allocated by matrix() */
+void free_matrix(float **m, long nrl, long nrh, long ncl, long nch)
 {
 	free((FREE_ARG) (m[nrl]+ncl-NR_END));
 	free((FREE_ARG) (m+nrl-NR_END));
 }
 
-void free_dmatrix(double **m, long nrl, long nrh, long ncl, long nch)
 /* free a double matrix allocated by dmatrix() */
+void free_dmatrix(double **m, long nrl, long nrh, long ncl, long nch)
 {
 	free((FREE_ARG) (m[nrl]+ncl-NR_END));
 	free((FREE_ARG) (m+nrl-NR_END));
 }
 
-void free_imatrix(int **m, long nrl, long nrh, long ncl, long nch)
 /* free an int matrix allocated by imatrix() */
+void free_imatrix(int **m, long nrl, long nrh, long ncl, long nch)
 {
 	free((FREE_ARG) (m[nrl]+ncl-NR_END));
 	free((FREE_ARG) (m+nrl-NR_END));
 }
 
-void free_subMatrix(float **b, long nrl, long nrh, long ncl, long nch)
 /* free a subMatrix allocated by subMatrix() */
+void free_subMatrix(float **b, long nrl, long nrh, long ncl, long nch)
 {
 	free((FREE_ARG) (b+nrl-NR_END));
 }
 
-void free_convert_matrix(float **b, long nrl, long nrh, long ncl, long nch)
 /* free a matrix allocated by convert_matrix() */
+void free_convert_matrix(float **b, long nrl, long nrh, long ncl, long nch)
 {
 	free((FREE_ARG) (b+nrl-NR_END));
 }
 
+/* free a float f3tensor allocated by f3tensor() */
 void free_f3tensor(float ***t, long nrl, long nrh, long ncl, long nch,
 	long ndl, long ndh)
-/* free a float f3tensor allocated by f3tensor() */
 {
 	free((FREE_ARG) (t[nrl][ncl]+ndl-NR_END));
 	free((FREE_ARG) (t[nrl]+ncl-NR_END));
 	free((FREE_ARG) (t+nrl-NR_END));
 }
-fcomplex *Cvector(int nl, int nh)
 /* allocate storage for a complex vector	*/
+fcomplex *Cvector(int nl, int nh)
 {
 	fcomplex *v;
 
@@ -308,8 +308,8 @@ fcomplex *Cvector(int nl, int nh)
 }
 
 
-fcomplex **Cmatrix(int nrl, int nrh, int ncl, int nch)	
 /* allocate storage for a Complex matrix	*/
+fcomplex **Cmatrix(int nrl, int nrh, int ncl, int nch)	
 {
 	int	i;
 	fcomplex **m;
@@ -326,8 +326,8 @@ fcomplex **Cmatrix(int nrl, int nrh, int ncl, int nch)
 }
 
 
-float ***D3matrix(int nrl, int nrh, int ncl, int nch, int nzl, int nzh)
  /* storage for a 3-D matrix */
+float ***D3matrix(int nrl, int nrh, int ncl, int nch, int nzl, int nzh)
 {
 	int     i,j;
 	float   ***m;
@@ -349,8 +349,8 @@ float ***D3matrix(int nrl, int nrh, int ncl, int nch, int nzl, int nzh)
 	return m;
 }
 
-double ***D3dmatrix(int nrl, int nrh, int ncl, int nch, int nzl, int nzh)
 /* storage for a 3-D matrix */
+double ***D3dmatrix(int nrl, int nrh, int ncl, int nch, int nzl, int nzh)
 {
 	int     i,j;
 	double   ***m;

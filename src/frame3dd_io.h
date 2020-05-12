@@ -29,7 +29,13 @@
 #include "microstran/vec3.h"
 
 #include <stdio.h>
-#include <unistd.h>	/* getopt for parsing command-line options	*/
+
+#if defined(WIN32)
+	#include "getopt.h"
+#else
+	#include <unistd.h>	/* getopt for parsing command-line options	*/
+#endif
+
 
 /**
  PARSE_OPTIONS -  parse command line options			     04mar09
